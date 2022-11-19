@@ -18,13 +18,13 @@
     <h1>Welcome</h1>
     <h3>Select the session duration</h3>
 
-    <form action="/" method="POST">
+    <form action="{{ url_for("home")}}" method="POST">
         <div class="time_selector">
             <div class="mb-3">
                 <label for="hour_input" class="form-label">Hours</label>
 
                 <div class="input_field">
-                    <input type="number" class="form-control w-50" id="hour_input" aria-describedby="emailHelp" min="0"
+                    <input type="number" class="form-control w-50" id="hour_input" name="hour_input" aria-describedby="emailHelp" min="0"
                         max="12">
                 </div>
 
@@ -34,7 +34,7 @@
                 <label for="minute_input" class="form-label">Minutes</label>
 
                 <div class="input_field">
-                    <input type="number" class="form-control w-50" id="minute_input" min="5" max="59">
+                    <input type="number" class="form-control w-50" id="minute_input" name="minute_input" min="5" max="59">
                 </div>
 
             </div>
@@ -45,7 +45,7 @@
         <h3>Settings</h3>
 
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="play_alarm">
+            <input type="checkbox" class="form-check-input" name="play_alarm" id="play_alarm">
             <label class="form-check-label" for="play_alarm">Play alarm</label>
         </div>
 
@@ -53,7 +53,7 @@
             <label for="break_freq" class="form-label">How often would you like a break?</label>
 
             <div class="input_field">
-                <input type="number" class="form-control w-50" id="break_freq" min="15" max="60">
+                <input type="number" class="form-control w-50" id="break_freq" name="break_freq" min="15" max="60">
             </div>
 
         </div>
