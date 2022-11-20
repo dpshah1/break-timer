@@ -43,7 +43,9 @@ def home():
         session['duration_hours'] = hours
         session['duration_minutes'] = minutes
 
-        time = long_timer(session['end_hour'], session['end_minute'], session['end_second'])
+        session['break_hour'] = current_time.hour + 1 if current_time.hour + break_freq > 59 else current_time.hour
+        session['break_minute'] = (current_time.minute + break_freq) % 60
+        session['break_second'] = current_time.second
 
         return redirect('/session')
 
@@ -56,8 +58,12 @@ def session_page():
     if current_time.hour >= session['end_hour'] and current_time.minute >= session['end_minute'] and current_time.second >= session['end_second']:
         return "session is over, good job"
 
+    if current_time.hour >= session['break_hour'] and current_time.minute >= session['break_minute'] and current_time.second >= session['break_second']:
+        return render_template('session.html')
+
     time = long_timer(session['end_hour'], session['end_minute'], session['end_second'])
-    return render_template('session.html', time=time)
+    short_time = short_timer(session['break_hour'], session['break_minute'], session['break_second'])
+    return render_template('session.html', time=time, short_time=short_time)
     
 
 if __name__ == "__main__":
