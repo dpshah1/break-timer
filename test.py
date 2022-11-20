@@ -1,4 +1,5 @@
 import datetime
+import time
 
 def long_timer(end_hour, end_min, end_sec):
     cur_time = datetime.datetime.now()
@@ -17,8 +18,17 @@ def short_timer(end_hour, end_min, end_sec):
     return (f"{int(time_remaining % 3600 / 60):02d} : {int(time_remaining % 3600 % 60):02d}")
 
 def timer_percentage(start_time, cur_time, end_time):
-    pass
-    
+    start_time = datetime.datetime.now() - datetime.timedelta(hours = 2)
+    end_time = datetime.datetime.now() + datetime.timedelta(hours = 4) 
+
+## maybe this works
+def t(dt):
+  return time.mktime(dt.timetuple())
+
+def percent(start_time, end_time, current_time):
+  total = t(end_time) - t(start_time)
+  current = t(current_time) - t(start_time)
+  return (100.0 * current) / total
     
     
     
@@ -34,4 +44,10 @@ class Time:
 
 print(long_timer(6, 30, 30))
 print(short_timer(12, 70, 30))
+
+
+
+
+
+
 
