@@ -19,11 +19,18 @@ def home():
         print(play_sound)
         print(break_freq)
 
-        current_time = x = datetime.datetime.now()
+        current_time = datetime.datetime.now()
 
         session['end_hour'] = (current_time.hour + hours) % 24
         session['end_minute'] = (current_time.minute + minutes) % 60
         session['end_second'] = (current_time.second)
+
+        session['start_hour'] = (current_time.hour)
+        session['start_minute'] = (current_time.minute)
+        session['start_second'] = (current_time.second)
+
+        session['duration_hours'] = hours
+        session['duration_minutes'] = minutes
 
         return f"Current time {current_time} \n Task will end at {session['end_hour']} : {session['end_minute']} : {session['end_second']}"
 
