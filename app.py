@@ -11,6 +11,10 @@ db = SQLAlchemy(app)
 def session():
     return render_template('session.html')
 
+@app.route('/break')
+def break_time():
+    return render_template('break.html')
+
 app.secret_key = b'dh%$*ruvloga!^)nwils&on('
 
 class Exercise(db.Model):
