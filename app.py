@@ -3,6 +3,10 @@ import datetime
 
 app = Flask(__name__)
 
+@app.route('/session')
+def session():
+    return render_template('session.html')
+
 app.secret_key = b'dh%$*ruvloga!^)nwils&on('
 
 @app.route('/', methods=['GET', 'POST'])
