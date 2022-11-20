@@ -1,23 +1,31 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import datetime
 
 app = Flask(__name__)
 
+app.secret_key = b'dh%$*ruvloga!^)nwils&on('
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        hours = request.form["hour_input"]
-        minutes = request.form["minute_input"]
+        hours = int(request.form["hour_input"])
+        minutes = int(request.form["minute_input"])
 
-        play_sound = request.form["play_alarm"]
-        break_freq = request.form["break_freq"]
+        play_sound = str(request.form["play_alarm"])
+        break_freq = int(request.form["break_freq"])
 
         print(hours)
         print(minutes)
         print(play_sound)
         print(break_freq)
 
-        return render_template('session.html')
+        current_time = x = datetime.datetime.now()
+
+        session['end_hour'] = (current_time.hour + hours) % 24
+        session['end_minute'] = (current_time.minute + minutes) % 60
+        session['end_second'] = (current_time.second)
+
+        return f"Current time {current_time} \n Task will end at {session['end_hour']} : {session['end_minute']} : {session['end_second']}"
 
     return render_template('index.html')
 
