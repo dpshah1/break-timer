@@ -1,9 +1,19 @@
 from flask import Flask, render_template, request, session
 import datetime
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+db = SQLAlchemy(app)
 
 app.secret_key = b'dh%$*ruvloga!^)nwils&on('
+
+class Exercise(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(800), nullable=False)
+    video_link = db.Column(db.String(200), nullable=False)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -35,6 +45,9 @@ def home():
         return f"Current time {current_time} \n Task will end at {session['end_hour']} : {session['end_minute']} : {session['end_second']}"
 
     return render_template('index.html')
+
+def insert():
+    e = Exercise("Childs pose", "Kneel on a yoga mat with legs together and slowly sit back onto heels. Extend torso up and bend forward from the hips so your chest rests on your thighs and your forehead rests on the ground in front of you. Let shoulders curl around and rest hands next to your feet with your palms up. Hold this position for 5 – 6 breaths.", "https://www.youtube.com/watch?v=qYvYsFrTI0U&ab_channel=ViveHealth")
 
 if __name__ == "__main__":
    app.run(debug=True)
