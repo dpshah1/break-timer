@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>self > everything</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
@@ -14,15 +14,17 @@
         <span>{{ time }}</span>
     </div>
 
-    <div style = "display: flex; justify-content: center; font-size: 60px; align-items: center;">
+    <div style = "display: flex; justify-content: center; font-size: 128px; align-items: center;">
         <span>{{ short_min }}</span>
         <span>:</span>
         <span>{{ short_sec }}</span>
     </div>
+    <br>
+    <div style = "display: flex; justify-content: center;"> 
+        
+        <a role="button" class="btn btn-outline-primary btn-lg" style = "font-size: 64px; margin-right: 50px" href="/">Home</a>
+        <a role="button" class="btn btn-outline-primary btn-lg disabled" style = "font-size: 64px;" href="/break">Break</a>
 
-    <div style = "display: flex; justify-content: center; align-items: center; font-size: 48px;">
-       <button>Home</button> 
-       <button>Break</button> 
     </div>
 
     <a href="/session">Update time</a>
