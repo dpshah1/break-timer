@@ -21,17 +21,15 @@ def timer_percentage(start_time, cur_time, end_time):
     start_time = datetime.datetime.now() - datetime.timedelta(hours = 2)
     end_time = datetime.datetime.now() + datetime.timedelta(hours = 4) 
 
-## maybe this works
-def t(dt):
-  return time.mktime(dt.timetuple())
+def percent(total_hours, total_minutes, start_time):
+    current_time = datetime.datetime.now()
+    current_time_seconds = current_time.hour * 3600 + current_time.minute * 60 + current_time.second
 
-def percent(start_time, end_time, current_time):
-  total = t(end_time) - t(start_time)
-  current = t(current_time) - t(start_time)
-  return (100.0 * current) / total
-    
-    
-    
+    difference = current_time_seconds - start_time.total_seconds()
+    duration = total_hours * 3600 + total_minutes * 60
+
+    return int(((difference / duration)) * 100)
+
 class Time:
     def __init__(self, hour, minute, second):
         self.hour = hour
@@ -42,8 +40,10 @@ class Time:
         return (self.hour * 3600 + self.minute * 60 + self.second)
     
 
-print(long_timer(6, 30, 30))
-print(short_timer(12, 70, 30))
+# print(long_timer(6, 30, 30))
+# print(short_timer(12, 70, 30))
+# print(percent(4, 30, Time(18, 0, 0)))
+
 
 
 
