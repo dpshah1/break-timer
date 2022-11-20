@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import datetime
 
 app = Flask(__name__)
 
@@ -19,11 +20,6 @@ def home():
         return render_template('session.html')
 
     return render_template('index.html')
-
-
-def timer(end_hour, end_min, end_sec):
-    # code to calculate hours, minutes, and seconds left
-    print("hello world")
 
 if __name__ == "__main__":
    app.run(debug=True)
